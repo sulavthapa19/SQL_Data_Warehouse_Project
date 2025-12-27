@@ -1,3 +1,48 @@
+/*
+=============================================================
+Stored Procedure: silver.load_silver
+=============================================================
+
+Script Purpose:
+    This stored procedure loads curated and standardized data into the 'silver' schema
+    from the 'bronze' schema tables.
+
+The procedure performs the following:
+    - Captures batch start and end time for the entire execution.
+    - Captures start and end time for each table load.
+    - Calculates and prints load duration (in seconds) per table.
+    - Truncates Silver tables before loading new data.
+    - Applies cleansing and standardization rules during INSERT statements.
+    - Processes both CRM and ERP source datasets.
+
+Transformations Applied:
+    - Trimming text columns (TRIM) for consistent formatting.
+    - Standardizing coded values (e.g., gender, marital status, country codes).
+    - Handling invalid dates and converting numeric date formats to DATE.
+    - Deduplicating CRM customer records using ROW_NUMBER().
+    - Deriving product end dates using LEAD() window function.
+    - Validating sales fields and recalculating sales/price when values are missing or inconsistent.
+
+Timing & Logging:
+    - @batch_start_time and @batch_end_time track total execution time.
+    - @start_time and @end_time track execution time per table.
+    - Load durations are printed to the console for monitoring.
+
+Error Handling:
+    - Uses TRY...CATCH to capture runtime errors.
+    - Prints error message, error number, and error state when failures occur.
+
+Parameters:
+    None.
+    This stored procedure does not accept input parameters
+    and does not return any values.
+
+Usage Example:
+    EXEC silver.load_silver;
+=============================================================
+*/
+
+
 CREATE OR ALTER PROCEDURE silver.load_silver
 AS
 BEGIN
@@ -257,10 +302,10 @@ BEGIN
     END TRY
     BEGIN CATCH
         PRINT '========================================================';
-        PRINT 'ERROR OCCURED DURING LOADING BRONZE LAYER';
+        PRINT 'ERROR OCCURED DURING LOADING SILVER LAYER';
         PRINT 'ERROR MESSAGE' + ERROR_MESSAGE();
-        PRINT 'ERROR MESSAGE' + CAST(ERROR_NUMBER() AS NVARCHAR);
-        PRINT 'ERROR MESSAGE' + CAST(ERROR_STATE() AS NVARCHAR);
+        PRINT 'ERROR NUMBER' + CAST(ERROR_NUMBER() AS NVARCHAR);
+        PRINT 'ERROR STATE' + CAST(ERROR_STATE() AS NVARCHAR);
         PRINT '========================================================';
     END CATCH
 END;
