@@ -86,13 +86,13 @@ BEGIN
             TRIM(cst_lastname)  AS cst_lastname,
             CASE
                 WHEN UPPER(TRIM(cst_marital_status)) = 'M' THEN 'Married'
-                WHEN UPPER(TRIM(cst_marital_status)) = ''  THEN 'Single'
-                ELSE 'Uknown'
+                WHEN UPPER(TRIM(cst_marital_status)) = 'S'  THEN 'Single'
+                ELSE 'Unknown'
             END AS cst_marital_status,
             CASE
-                WHEN UPPER(TRIM(cst_gndr)) = 'M' THEN 'MALE'
-                WHEN UPPER(TRIM(cst_gndr)) = 'F' THEN 'FEMALE'
-                ELSE 'Uknown'
+                WHEN UPPER(TRIM(cst_gndr)) = 'M' THEN 'Male'
+                WHEN UPPER(TRIM(cst_gndr)) = 'F' THEN 'Female'
+                ELSE 'Unknown'
             END AS cst_gndr,
             cst_create_date
         FROM (
