@@ -1,33 +1,68 @@
-## Data Warehouse and Analytics Project
 
-This project demonstrates the end-to-end development of a data warehouse using SQL Server. It covers the full process of working with data from multiple sources, preparing it for analysis, and generating insights that support business decision-making. The project was created as a portfolio to showcase practical skills in data engineering and analytics.
 
-## Requirements
-**Objective**:
 
-Develop a SQL Server–based data warehouse that consolidates sales data from separate operational systems and organizes it for analytical use.
 
-## Specifications
 
-**Source Data**: Work with two datasets (ERP and CRM), provided in CSV format.
+##Data Warehouse and Analytics Project
 
-**Data Preparation**: Clean, validate, and standardize raw data to ensure accuracy and consistency before loading.
+This project demonstrates the end-to-end development of a SQL Server data warehouse, covering data extraction, transformation, loading, and SQL-based analytics. It is built as a portfolio project to showcase practical data engineering and analytical skills.
 
-**Data Integration**: Combine ERP and CRM data into a unified data model designed for reporting and analysis.
+##Objective
 
-**Scope**: Used only the most recent dataset. Historical or incremental processing is not included in this version.
+Build a SQL Server data warehouse that consolidates sales data from ERP and CRM systems and prepares it for analytical reporting.
 
-**Documentation**: Provide clear explanations of tables, relationships, and transformation logic for both technical and non-technical users.
+## Data Sources
 
-## Analytics and Reporting
+ERP and CRM datasets
 
-**Objective**
-Develop SQL-based analysis to highlight key business metrics and performance trends.
+CSV file format
 
--- **Customer behavior and activity**
+Only the most recent data is used; historical and incremental processing are not included
 
--- **Product performance**
+##ETL Process
+##Extraction
 
--- **Sales trends and patterns**
+Pull-based full extraction, Data sourced from CSV files using file parsing & Each run extracts the complete dataset into a staging area
+
+##Transformation
+
+Raw data is transformed into a consistent, analysis-ready format using SQL.
+
+Data enrichment and integration, Derived columns, Normalization and standardization &  Business rules and aggregations.
+
+##Data cleansing:
+
+Duplicate removal, Filtering, Handling missing and invalid values, Outlier detection, Data type casting,  & Trimming unwanted spaces.
+
+##Load
+
+Batch processing, Full load using truncate and insert, & Dimension tables use SCD Type 1 (overwrite) with no historical tracking
+
+##Analytics
+**Customer behavior ** Product performance ** Sales trends and patterns
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
